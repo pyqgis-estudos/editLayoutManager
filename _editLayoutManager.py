@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 ### Em construção
 
 # Access the PrintLayouts from the layoutManager.
