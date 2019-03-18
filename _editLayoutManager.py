@@ -1,12 +1,26 @@
 ### Em construção
 
+# Access the PrintLayouts from the layoutManager.
 layoutS = QgsProject.instance().layoutManager().printLayouts()
 
+# Iterate over the layouts
 for layout in layoutS:
-    
+    # Create a list with the lmits
+    OriginExtent = [layout.referenceMap().extent().xMinimum(),\
+                    layout.referenceMap().extent().yMinimum(),\
+                    layout.referenceMap().extent().xMaximum(),\
+                    layout.referenceMap().extent().yMaximum()]
+''' 
+    # Cria uma variável para cada uma
+    xminO = layout.referenceMap().extent().xMinimum(),\
+    yminO = layout.referenceMap().extent().yMinimum(),\
+    xmaxO = layout.referenceMap().extent().xMaximum(),\
+    ymaxO = layout.referenceMap().extent().yMaximum()]
+'''
+    # Show the result test                
     print(
-    layout.name()
-    layout.referenceMap().extent()
+    layout.name(),\
+    OriginExtent)
     
 # Set a new value to the extent of current map
 xmin = _float
@@ -19,7 +33,7 @@ rect = QgsRectangle(xmin, ymin, xmax, ymax )
 def changeExtent(nRectangle):
     layout.referenceMap().setExtent()
     
-# Find the items fromthe layout
+# Find the items from the layout
 def items():
     layout.items()
      
