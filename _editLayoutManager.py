@@ -4,6 +4,8 @@
 # Access the PrintLayouts from the layoutManager.
 layoutS = QgsProject.instance().layoutManager().printLayouts()
 
+refExt = QgsProject.instance().layoutManager().layoutByName('DESEN Areas Estrategicas').referenceMap().extent()
+
 # Iterate over the layouts
 for layout in layoutS:
     # Create a list with the lmits
