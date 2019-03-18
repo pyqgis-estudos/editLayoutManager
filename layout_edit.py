@@ -23,7 +23,8 @@
 """
 from PyQt5.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QAction
+from PyQt5.QtWidgets import QAction, QTableWidgetItem
+from qgis.core import QgsProject
 
 # Initialize Qt resources from file resources.py
 from .resources import *
@@ -190,6 +191,23 @@ class editLayouts:
         if self.first_start == True:
             self.first_start = False
             self.dlg = editLayoutsDialog()
+
+            # #%# Preenche os campos com os dados do projeto
+            layout_list = [layouts_obj.name() for layouts_obj in QgsProject.instance().layoutManager().printLayouts()]
+            self.dlg.listLayouts.addItems(layout_list)
+            # TABLE
+            listHeaders = ["xMin", "yMin", "xMax", "yMax"]
+            self.dlg.tableWidget.setRowCount(len(layout_list))
+            self.dlg.tableWidget.setColumnCount(4)
+            self.dlg.tableWidget.setHorizontalHeaderLabels(listHeaders)
+            self.dlg.tableWidget.setVerticalHeaderLabels(layout_list)
+
+            # first column: populate factors for 1st category (cat1)
+            BODfactors = QTableWidgetItem([layouts_obj.referenceMap().extent().toString() for layouts_obj in QgsProject.instance().layoutManager().printLayouts()][0])
+            self.dlg.tableWidget.setItem(0, 0, BODfactors)
+
+
+
 
         # show the dialog
         self.dlg.show()
