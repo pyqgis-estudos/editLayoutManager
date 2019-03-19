@@ -3,12 +3,13 @@
 
 # Access the PrintLayouts from the layoutManager.
 layoutS = QgsProject.instance().layoutManager().printLayouts()
+layouts_name = [layout.name() for layout in QgsProject.instance().layoutManager().printLayouts()]
 
 refExt = QgsProject.instance().layoutManager().layoutByName('DESEN Areas Estrategicas').referenceMap().extent()
 
 # Iterate over the layouts
 for layout in layoutS:
-    # Create a list with the lmits
+    # Create a list with the limits
     OriginExtent = [layout.referenceMap().extent().xMinimum(),\
                     layout.referenceMap().extent().yMinimum(),\
                     layout.referenceMap().extent().xMaximum(),\
