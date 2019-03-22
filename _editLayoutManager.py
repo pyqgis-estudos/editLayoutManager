@@ -36,6 +36,7 @@ rect = QgsRectangle(xmin, ymin, xmax, ymax )
 
 def changeExtent(nRectangle):
     layout.referenceMap().setExtent()
+    QgsProject.instance().layoutManager().layoutByName('<>').referenceMap().setExtent(refExt)
     
 # Find the items from the layout
 def items():
